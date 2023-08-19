@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 import '../../constants.dart';
 
 class CustomTextFormField extends StatefulWidget {
@@ -46,10 +47,10 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
           color: kPrimaryColor,
         ),
         labelText: widget.lableText,
-        labelStyle: const TextStyle(color: Colors.grey, fontSize: 18),
+        labelStyle: TextStyle(color: Colors.grey, fontSize: 14.sp),
         hintText: widget.hint,
-        hintStyle: const TextStyle(
-          fontSize: 18,
+        hintStyle: TextStyle(
+          fontSize: 14.sp,
           color: Colors.grey,
         ),
         focusedBorder: const OutlineInputBorder(
