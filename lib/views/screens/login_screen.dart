@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:itistore/views/screens/signup_screen.dart';
 import 'package:sizer/sizer.dart';
 import '../../constants.dart';
 import '../widgets/custom_button.dart';
@@ -104,7 +105,17 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      if (!Navigator.canPop(context)) {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const SignupScreen(),
+                            ));
+                      } else {
+                        Navigator.pop(context);
+                      }
+                    },
                     child: Text(
                       ' Sign up',
                       style: TextStyle(
