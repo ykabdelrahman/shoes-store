@@ -30,11 +30,12 @@ class _SignupScreenState extends State<SignupScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                SizedBox(height: 20.h),
                 Row(
                   children: [
                     Text('Sign Up',
                         style: TextStyle(
-                          fontSize: 18.sp,
+                          fontSize: 20.sp,
                           color: Colors.grey,
                         )),
                   ],
@@ -96,7 +97,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     }
                   },
                 ),
-                SizedBox(height: 2.h),
+                SizedBox(height: 2.5.h),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -104,7 +105,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       'Already have an account?',
                       style: TextStyle(
                         color: Colors.grey,
-                        fontSize: 10.sp,
+                        fontSize: 12.sp,
                       ),
                     ),
                     InkWell(
@@ -123,7 +124,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         ' Log In',
                         style: TextStyle(
                           color: kPrimaryColor,
-                          fontSize: 10.sp,
+                          fontSize: 12.sp,
                         ),
                       ),
                     ),
