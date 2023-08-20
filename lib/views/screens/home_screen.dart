@@ -1,51 +1,54 @@
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 //import 'package:google_fonts/google_fonts.dart';
 
-class homePage extends StatefulWidget {
-  const homePage({super.key});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
   @override
-  State<homePage> createState() => _homePageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _homePageState extends State<homePage> {
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: const Text(
+          title: Text(
             "Home",
             style: TextStyle(
-                color: Colors.black, fontWeight: FontWeight.bold, fontSize: 32),
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+              fontSize: 12.sp,
+            ),
             /*style: GoogleFonts.aladin(
             textStyle: TextStyle(
                 color: Colors.black, fontWeight: FontWeight.bold, fontSize: 32),
           ),*/
           ),
           backgroundColor: Colors.white,
-          leading: const Icon(
-            Icons.menu,
+          leading: IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.menu),
             color: Colors.black,
           ),
-          actions: const [
-            Icon(
-              Icons.favorite,
+          actions: [
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.favorite,
+              ),
               color: Colors.black,
             ),
-            SizedBox(
-              width: 12,
-            ),
-            Icon(
-              Icons.shopping_cart_outlined,
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.shopping_cart_outlined),
               color: Colors.black,
             ),
-            SizedBox(
-              width: 15,
-            )
           ],
         ),
-        drawer: Drawer(),
+        drawer: const Drawer(),
         body: SingleChildScrollView(
             child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -53,20 +56,20 @@ class _homePageState extends State<homePage> {
             children: [
               Container(
                 height: 55,
-                padding: EdgeInsets.only(top: 3),
+                padding: const EdgeInsets.only(top: 3),
                 decoration: BoxDecoration(
                     border: Border.all(color: Colors.purple),
                     color: Colors.white,
-                    borderRadius: BorderRadius.all(Radius.circular(17))),
+                    borderRadius: const BorderRadius.all(Radius.circular(17))),
                 child: Row(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       width: 20,
                     ),
-                    Icon(Icons.search),
+                    const Icon(Icons.search),
                     Container(
                       color: Colors.white,
-                      margin: EdgeInsets.only(left: 5),
+                      margin: const EdgeInsets.only(left: 5),
                       height: 50,
                       width: 300,
                       child: const TextField(
@@ -79,9 +82,9 @@ class _homePageState extends State<homePage> {
                   ],
                 ),
               ),
-              Container(
+              const SizedBox(
                 height: 60,
-                child: const Center(
+                child: Center(
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 10, vertical: 2),
                     child: Row(children: [

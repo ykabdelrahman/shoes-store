@@ -14,9 +14,9 @@ class _BottomNavBarState extends State<BottomNavBar> {
   int currentIndex = 0;
 
   final List<Widget> screens = [
-    homePage(),
-    CategoriesScreen(),
-    profilescreen(),
+    const HomePage(),
+    const CategoriesScreen(),
+    const ProfileScreen(),
   ];
   @override
   Widget build(BuildContext context) {

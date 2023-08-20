@@ -5,9 +5,14 @@ import 'package:itistore/views/screens/signup_screen.dart';
 import 'package:sizer/sizer.dart';
 import '../widgets/custom_button.dart';
 
-class WelcomeScreen extends StatelessWidget {
+class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
 
+  @override
+  State<WelcomeScreen> createState() => _WelcomeScreenState();
+}
+
+class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,6 +23,7 @@ class WelcomeScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            const Row(),
             Text(
               'Welcome to noNameStoreForNow',
               style: TextStyle(
@@ -47,7 +53,7 @@ class WelcomeScreen extends StatelessWidget {
               borderRadius: BorderRadius.circular(6),
               splashColor: Colors.purple,
               textStyle: TextStyle(
-                fontSize: 14.sp,
+                fontSize: 12.sp,
                 color: Colors.white,
               ),
             ),
@@ -67,7 +73,7 @@ class WelcomeScreen extends StatelessWidget {
               borderRadius: BorderRadius.circular(6),
               splashColor: Colors.purple,
               textStyle: TextStyle(
-                fontSize: 14.sp,
+                fontSize: 12.sp,
                 color: Colors.white,
               ),
             ),

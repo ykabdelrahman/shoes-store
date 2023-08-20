@@ -5,6 +5,7 @@ import 'package:sizer/sizer.dart';
 import '../../constants.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/custom_text_field.dart';
+import 'botttom_nav_screen.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -16,6 +17,7 @@ class SignupScreen extends StatefulWidget {
 class _SignupScreenState extends State<SignupScreen> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final phoneController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
 
@@ -36,7 +38,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   children: [
                     Text('Sign Up',
                         style: TextStyle(
-                          fontSize: 30,
+                          fontSize: 20.sp,
                           color: Colors.grey,
                         )),
                   ],
@@ -66,31 +68,45 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
                 //phone
                 SizedBox(height: 3.h),
-                Container(
-                  child: TextFormField(
-                    keyboardType: TextInputType.phone,
-                    style: const TextStyle(
-                      color: Colors.black,
-                    ),
-                    decoration: InputDecoration(
-                      prefixText: '+20',
-                      prefixIcon: const Icon(
-                        Icons.phone,
-                        color: kPrimaryColor,
-                      ),
-                      labelText: 'phone',
-                      labelStyle: TextStyle(color: Colors.grey, fontSize: 30),
-                      border: OutlineInputBorder(
-                        borderSide:
-                            const BorderSide(width: 7, color: kPrimaryColor),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      focusedBorder: const OutlineInputBorder(
-                        borderSide: BorderSide(color: kPrimaryColor),
-                      ),
-                    ),
+                CustomTextFormField(
+                  lableText: 'Phone',
+                  iconn: Icons.phone,
+                  textStyle: const TextStyle(
+                    color: Colors.black,
                   ),
+                  textType: TextInputType.phone,
+                  controller: phoneController,
                 ),
+                // TextFormField(
+                //   keyboardType: TextInputType.phone,
+                //   style: const TextStyle(
+                //     color: Colors.black,
+                //   ),
+                //   decoration: InputDecoration(
+                //     prefixText: '+20',
+                //     prefixIcon: const Icon(
+                //       Icons.phone,
+                //       color: kPrimaryColor,
+                //     ),
+                //     labelText: 'phone',
+                //     labelStyle: const TextStyle(
+                //       color: Colors.grey,
+                //       fontSize: 30,
+                //     ),
+                //     border: OutlineInputBorder(
+                //       borderSide: const BorderSide(
+                //         width: 7,
+                //         color: kPrimaryColor,
+                //       ),
+                //       borderRadius: BorderRadius.circular(8),
+                //     ),
+                //     focusedBorder: const OutlineInputBorder(
+                //       borderSide: BorderSide(
+                //         color: kPrimaryColor,
+                //       ),
+                //     ),
+                //   ),
+                // ),
                 SizedBox(height: 8.h),
                 CustomButton(
                   borderRadius: BorderRadius.circular(6),
@@ -98,7 +114,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   splashColor: Colors.purple,
                   textStyle: TextStyle(
                     color: Colors.white,
-                    fontSize: 14.sp,
+                    fontSize: 12.sp,
                   ),
                   height: 8.h,
                   width: 100.w,
@@ -111,6 +127,15 @@ class _SignupScreenState extends State<SignupScreen> {
                           email: emailController.text,
                           password: passwordController.text,
                         );
+                        if (context.mounted) {
+                          Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const BottomNavBar(),
+                            ),
+                            (route) => false,
+                          );
+                        }
                       } on FirebaseAuthException catch (e) {
                         if (e.code == 'weak-password') {
                           showSnackBar(
@@ -133,7 +158,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       'Already have an account?',
                       style: TextStyle(
                         color: Colors.grey,
-                        fontSize: 30,
+                        fontSize: 10.sp,
                       ),
                     ),
                     InkWell(
@@ -152,7 +177,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         ' Log In',
                         style: TextStyle(
                           color: kPrimaryColor,
-                          fontSize: 30,
+                          fontSize: 10.sp,
                         ),
                       ),
                     ),

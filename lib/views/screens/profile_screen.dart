@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-class profilescreen extends StatefulWidget {
-  const profilescreen({super.key});
+class ProfileScreen extends StatefulWidget {
+  const ProfileScreen({super.key});
 
   @override
-  State<profilescreen> createState() => _profilescreenState();
+  State<ProfileScreen> createState() => _ProfileScreenState();
 }
 
-class _profilescreenState extends State<profilescreen> {
+class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return const Center(
       child: Text('1'),
     );
   }

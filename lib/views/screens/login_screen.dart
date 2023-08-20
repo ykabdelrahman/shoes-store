@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:itistore/views/screens/botttom_nav_screen.dart';
-import 'package:itistore/views/screens/home_screen.dart';
 import 'package:itistore/views/screens/signup_screen.dart';
 import 'package:itistore/views/widgets/custom_button.dart';
 import 'package:itistore/views/widgets/custom_text_field.dart';
@@ -26,110 +25,127 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       body: Form(
         key: _formKey,
-        child: Padding(
-          padding: const EdgeInsets.all(18),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(
-                'assets/images/logo.png',
-                width: 170,
-                height: 170,
-              ),
-              SizedBox(height: 8.h),
-              CustomTextFormField(
-                lableText: 'Email',
-                iconn: Icons.email,
-                textStyle: const TextStyle(
-                  color: Colors.black,
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(18),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // Image.asset(
+                //   'assets/images/logo.png',
+                //   width: 30.w,
+                //   height: 30.h,
+                // ),
+                SizedBox(height: 20.h),
+                Row(
+                  children: [
+                    Text('Log In',
+                        style: TextStyle(
+                          fontSize: 20.sp,
+                          color: Colors.grey,
+                        )),
+                  ],
                 ),
-                textType: TextInputType.emailAddress,
-                controller: emailController,
-                validator: validateEmail,
-              ),
-              SizedBox(height: 3.h),
-              CustomTextFormField(
-                lableText: 'Password',
-                hideText: true,
-                iconn: Icons.lock,
-                textStyle: const TextStyle(
-                  color: Colors.black,
-                ),
-                textType: TextInputType.visiblePassword,
-                controller: passwordController,
-                validator: validatePassword,
-              ),
-              SizedBox(height: 8.h),
-              CustomButton(
-                borderRadius: BorderRadius.circular(6),
-                backgroundColor: kPrimaryColor,
-                splashColor: Colors.purple,
-                textStyle: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 35,
-                ),
-                height: 8.h,
-                width: 100.w,
-                text: 'Log In',
-                onTap: () async {
-                  if (_formKey.currentState!.validate()) {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const BottomNavBar(),
-                        ));
-                    try {
-                      await FirebaseAuth.instance.signInWithEmailAndPassword(
-                        email: emailController.text,
-                        password: passwordController.text,
-                      );
-                    } on FirebaseAuthException catch (e) {
-                      if (e.code == 'user-not-found') {
-                        showSnackBar(context, 'No user found for that email.');
-                      } else if (e.code == 'wrong-password') {
-                        showSnackBar(
-                            context, 'Wrong password provided for that user.');
-                      } else {
-                        showSnackBar(context, e.message.toString());
-                      }
-                    }
-                  }
-                },
-              ),
-              SizedBox(height: 2.h),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text(
-                    'Don\'t have an account?',
-                    style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 30,
-                    ),
+                SizedBox(height: 8.h),
+                CustomTextFormField(
+                  lableText: 'Email',
+                  iconn: Icons.email,
+                  textStyle: const TextStyle(
+                    color: Colors.black,
                   ),
-                  InkWell(
-                    onTap: () {
-                      if (!Navigator.canPop(context)) {
-                        Navigator.push(
+                  textType: TextInputType.emailAddress,
+                  controller: emailController,
+                  validator: validateEmail,
+                ),
+                SizedBox(height: 3.h),
+                CustomTextFormField(
+                  lableText: 'Password',
+                  hideText: true,
+                  iconn: Icons.lock,
+                  textStyle: const TextStyle(
+                    color: Colors.black,
+                  ),
+                  textType: TextInputType.visiblePassword,
+                  controller: passwordController,
+                  validator: validatePassword,
+                ),
+                SizedBox(height: 8.h),
+                CustomButton(
+                  borderRadius: BorderRadius.circular(6),
+                  backgroundColor: kPrimaryColor,
+                  splashColor: Colors.purple,
+                  textStyle: TextStyle(
+                    color: Colors.white,
+                    fontSize: 12.sp,
+                  ),
+                  height: 8.h,
+                  width: 100.w,
+                  text: 'Log In',
+                  onTap: () async {
+                    if (_formKey.currentState!.validate()) {
+                      try {
+                        await FirebaseAuth.instance.signInWithEmailAndPassword(
+                          email: emailController.text,
+                          password: passwordController.text,
+                        );
+                        if (context.mounted) {
+                          Navigator.pushAndRemoveUntil(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const SignupScreen(),
-                            ));
-                      } else {
-                        Navigator.pop(context);
+                              builder: (context) => const BottomNavBar(),
+                            ),
+                            (route) => false,
+                          );
+                        }
+                      } on FirebaseAuthException catch (e) {
+                        if (e.code == 'user-not-found') {
+                          showSnackBar(
+                              context, 'No user found for that email.');
+                        } else if (e.code == 'wrong-password') {
+                          showSnackBar(context,
+                              'Wrong password provided for that user.');
+                        } else {
+                          showSnackBar(context, e.message.toString());
+                        }
                       }
-                    },
-                    child: const Text(
-                      ' Sign up',
+                    }
+                  },
+                ),
+                SizedBox(height: 2.h),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Don\'t have an account?',
                       style: TextStyle(
-                        color: kPrimaryColor,
-                        fontSize: 35,
+                        color: Colors.grey,
+                        fontSize: 10.sp,
                       ),
                     ),
-                  ),
-                ],
-              ),
-            ],
+                    InkWell(
+                      onTap: () {
+                        if (!Navigator.canPop(context)) {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const SignupScreen(),
+                              ));
+                        } else {
+                          Navigator.pop(context);
+                        }
+                      },
+                      child: Text(
+                        ' Sign up',
+                        style: TextStyle(
+                          color: kPrimaryColor,
+                          fontSize: 10.sp,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
