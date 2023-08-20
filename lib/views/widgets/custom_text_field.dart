@@ -47,10 +47,10 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
           color: kPrimaryColor,
         ),
         labelText: widget.lableText,
-        labelStyle: TextStyle(color: Colors.grey, fontSize: 14.sp),
+        labelStyle: TextStyle(color: Colors.grey, fontSize: 30),
         hintText: widget.hint,
         hintStyle: TextStyle(
-          fontSize: 14.sp,
+          fontSize: 30,
           color: Colors.grey,
         ),
         focusedBorder: const OutlineInputBorder(
