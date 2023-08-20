@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:itistore/views/screens/login_screen.dart';
 import 'package:sizer/sizer.dart';
@@ -28,12 +29,13 @@ class _SignupScreenState extends State<SignupScreen> {
           padding: const EdgeInsets.all(18),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Row(
                 children: [
                   Text('Sign Up',
                       style: TextStyle(
-                        fontSize: 18.sp,
+                        fontSize: 30,
                         color: Colors.grey,
                       )),
                 ],
@@ -61,6 +63,34 @@ class _SignupScreenState extends State<SignupScreen> {
                 controller: passwordController,
                 validator: validatePassword,
               ),
+//phone
+              SizedBox(height: 3.h),
+              Container(
+                child: TextFormField(
+                  keyboardType: TextInputType.phone,
+                  style: const TextStyle(
+                    color: Colors.black,
+                  ),
+                  decoration: InputDecoration(
+                    prefixText: '+20',
+                    prefixIcon: const Icon(
+                      Icons.phone,
+                      color: kPrimaryColor,
+                    ),
+                    labelText: 'phone',
+                    labelStyle: TextStyle(color: Colors.grey, fontSize: 30),
+                    border: OutlineInputBorder(
+                      borderSide:
+                          const BorderSide(width: 7, color: kPrimaryColor),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    focusedBorder: const OutlineInputBorder(
+                      borderSide: BorderSide(color: kPrimaryColor),
+                    ),
+                  ),
+                ),
+              ),
+
               SizedBox(height: 8.h),
               CustomButton(
                 borderRadius: BorderRadius.circular(6),
@@ -68,7 +98,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 splashColor: Colors.purple,
                 textStyle: TextStyle(
                   color: Colors.white,
-                  fontSize: 14.sp,
+                  fontSize: 30,
                 ),
                 height: 8.h,
                 width: 100.w,
@@ -103,7 +133,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     'Already have an account?',
                     style: TextStyle(
                       color: Colors.grey,
-                      fontSize: 10.sp,
+                      fontSize: 30,
                     ),
                   ),
                   InkWell(

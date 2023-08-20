@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:itistore/views/screens/botttom_nav_screen.dart';
+import 'package:itistore/views/screens/home_screen.dart';
 import 'package:itistore/views/screens/signup_screen.dart';
 import 'package:sizer/sizer.dart';
 import '../../constants.dart';
@@ -29,14 +31,10 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Row(
-                children: [
-                  Text('Log In',
-                      style: TextStyle(
-                        fontSize: 18.sp,
-                        color: Colors.grey,
-                      )),
-                ],
+              Image.asset(
+                'assets/images/logo.png',
+                width: 170,
+                height: 170,
               ),
               SizedBox(height: 8.h),
               CustomTextFormField(
@@ -66,15 +64,20 @@ class _LoginScreenState extends State<LoginScreen> {
                 borderRadius: BorderRadius.circular(6),
                 backgroundColor: kPrimaryColor,
                 splashColor: Colors.purple,
-                textStyle: TextStyle(
+                textStyle: const TextStyle(
                   color: Colors.white,
-                  fontSize: 14.sp,
+                  fontSize: 35,
                 ),
                 height: 8.h,
                 width: 100.w,
                 text: 'Log In',
                 onTap: () async {
                   if (_formKey.currentState!.validate()) {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const BottomNavBar(),
+                        ));
                     try {
                       await FirebaseAuth.instance.signInWithEmailAndPassword(
                         email: emailController.text,
@@ -97,11 +100,11 @@ class _LoginScreenState extends State<LoginScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     'Don\'t have an account?',
                     style: TextStyle(
                       color: Colors.grey,
-                      fontSize: 10.sp,
+                      fontSize: 30,
                     ),
                   ),
                   InkWell(
@@ -116,11 +119,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         Navigator.pop(context);
                       }
                     },
-                    child: Text(
+                    child: const Text(
                       ' Sign up',
                       style: TextStyle(
                         color: kPrimaryColor,
-                        fontSize: 10.sp,
+                        fontSize: 35,
                       ),
                     ),
                   ),
