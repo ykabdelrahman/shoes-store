@@ -1,7 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:itistore/views/screens/botttom_nav_screen.dart';
-import 'package:itistore/views/screens/home_screen.dart';
 import 'package:itistore/views/screens/signup_screen.dart';
 import 'package:sizer/sizer.dart';
 import '../../constants.dart';
@@ -26,7 +24,6 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       body: Form(
         key: _formKey,
-<<<<<<< HEAD
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(18),
@@ -42,24 +39,6 @@ class _LoginScreenState extends State<LoginScreen> {
                           color: Colors.grey,
                         )),
                   ],
-=======
-        child: Padding(
-          padding: const EdgeInsets.all(18),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(
-                'assets/images/logo.png',
-                width: 170,
-                height: 170,
-              ),
-              SizedBox(height: 8.h),
-              CustomTextFormField(
-                lableText: 'Email',
-                iconn: Icons.email,
-                textStyle: const TextStyle(
-                  color: Colors.black,
->>>>>>> 555af261d450f7efbd964d624f708cbba86a39ad
                 ),
                 SizedBox(height: 8.h),
                 CustomTextFormField(
@@ -72,7 +51,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   controller: emailController,
                   validator: validateEmail,
                 ),
-<<<<<<< HEAD
                 SizedBox(height: 3.h),
                 CustomTextFormField(
                   lableText: 'Password',
@@ -127,77 +105,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       style: TextStyle(
                         color: Colors.grey,
                         fontSize: 12.sp,
-=======
-                textType: TextInputType.visiblePassword,
-                controller: passwordController,
-                validator: validatePassword,
-              ),
-              SizedBox(height: 8.h),
-              CustomButton(
-                borderRadius: BorderRadius.circular(6),
-                backgroundColor: kPrimaryColor,
-                splashColor: Colors.purple,
-                textStyle: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 35,
-                ),
-                height: 8.h,
-                width: 100.w,
-                text: 'Log In',
-                onTap: () async {
-                  if (_formKey.currentState!.validate()) {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const BottomNavBar(),
-                        ));
-                    try {
-                      await FirebaseAuth.instance.signInWithEmailAndPassword(
-                        email: emailController.text,
-                        password: passwordController.text,
-                      );
-                    } on FirebaseAuthException catch (e) {
-                      if (e.code == 'user-not-found') {
-                        showSnackBar(context, 'No user found for that email.');
-                      } else if (e.code == 'wrong-password') {
-                        showSnackBar(
-                            context, 'Wrong password provided for that user.');
-                      } else {
-                        showSnackBar(context, e.message.toString());
-                      }
-                    }
-                  }
-                },
-              ),
-              SizedBox(height: 2.h),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text(
-                    'Don\'t have an account?',
-                    style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 30,
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      if (!Navigator.canPop(context)) {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const SignupScreen(),
-                            ));
-                      } else {
-                        Navigator.pop(context);
-                      }
-                    },
-                    child: const Text(
-                      ' Sign up',
-                      style: TextStyle(
-                        color: kPrimaryColor,
-                        fontSize: 35,
->>>>>>> 555af261d450f7efbd964d624f708cbba86a39ad
                       ),
                     ),
                     InkWell(
