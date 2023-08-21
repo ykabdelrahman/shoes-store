@@ -33,7 +33,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               ),
             ),
             Image(
-              image: const AssetImage('assets/images/store.png'),
+              image: const AssetImage('assets/images/logo.png'),
               height: 30.h,
               width: 30.w,
             ),
