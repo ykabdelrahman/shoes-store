@@ -57,27 +57,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
               /// -- MENU
               ProfileMenuWidget(
-                  title: "My Order",
-                  icon: (Icons.shopping_cart),
-                  onPress: () {}),
-              ProfileMenuWidget(
-                  title: "Reviews",
-                  icon: Icons.question_mark_sharp,
-                  onPress: () {}),
-              ProfileMenuWidget(
-                  title: "Payment", icon: Icons.credit_card, onPress: () {}),
-              ProfileMenuWidget(
                   title: "Developers",
-                  icon: Icons.edit_square,
+                  icon: Icons.person_2_outlined,
                   onPress: () {
                     // Navigator
                   }),
+              ProfileMenuWidget(
+                  title: "Address", icon: (Icons.location_on), onPress: () {}),
+
+              ProfileMenuWidget(
+                  title: "Payment", icon: Icons.credit_card, onPress: () {}),
+
               ProfileMenuWidget(
                   title: "About Us",
                   icon: Icons.info_outline,
                   onPress: () {
                     // Navigator
                   }),
+              ProfileMenuWidget(
+                  title: "Reviews",
+                  icon: Icons.star_border_outlined,
+                  onPress: () {}),
               ProfileMenuWidget(
                 title: "Logout",
                 icon: Icons.logout_outlined,
