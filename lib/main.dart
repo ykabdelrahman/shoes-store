@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:itistore/views/screens/home_screen.dart';
+import 'package:itistore/views/screens/profile_screen.dart';
 import 'package:itistore/views/screens/welcome_screen.dart';
 import 'package:sizer/sizer.dart';
 
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
       builder: (context, orientation, deviceType) {
         return const MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: HomePage(),
+          home: ProfileScreen(),
         );
       },
     );
