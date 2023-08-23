@@ -60,8 +60,12 @@ class ProfileMenuWidget extends StatelessWidget {
                 borderRadius: BorderRadius.circular(100),
                 color: Colors.purple.withOpacity(0.1),
               ),
-              child: const Icon(Icons.navigate_next_outlined,
-                  size: 18.0, color: Colors.grey))
+              child: const Icon(
+                Icons.navigate_next_outlined,
+                size: 18.0,
+                color: Colors.grey,
+              ),
+            )
           : null,
     );
   }

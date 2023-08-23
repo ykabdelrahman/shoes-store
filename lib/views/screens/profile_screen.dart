@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:itistore/views/widgets/profile_listtile.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -19,73 +18,79 @@ class _ProfileScreenState extends State<ProfileScreen> {
         backgroundColor: Colors.white,
       ),
       body: SingleChildScrollView(
-        child: Container(
-          child: Column(
-            children: [
-              /// -- IMAGE
-              SizedBox(
-                width: 120,
-                height: 120,
-                child: ClipRRect(
-                    borderRadius: BorderRadius.circular(100),
-                    child: const Image(
-                        image: AssetImage("assets/images/store.png"))),
-              ),
-              const SizedBox(height: 10),
-              //email---------//
-              const SizedBox(height: 20),
-              SizedBox(
-                width: 250,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color.fromARGB(255, 250, 240, 230),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(17.0),
-                    ),
-                  ),
-                  onPressed: () {},
-                  child: const Text(
-                    "Edite Profile",
-                    style: TextStyle(color: Colors.purple),
-                  ),
+        child: Column(
+          children: [
+            /// -- IMAGE
+            SizedBox(
+              width: 100,
+              height: 100,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(100),
+                child: const Image(
+                  image: AssetImage('assets/images/user.png'),
                 ),
               ),
+            ),
+            const SizedBox(height: 10),
+            //email---------//
+            const SizedBox(height: 20),
+            SizedBox(
+              width: 250,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromARGB(255, 250, 240, 230),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(17.0),
+                  ),
+                ),
+                onPressed: () {},
+                child: const Text(
+                  "Edite Profile",
+                  style: TextStyle(color: Colors.purple),
+                ),
+              ),
+            ),
 
-              const SizedBox(height: 20),
+            const SizedBox(height: 20),
 
-              const Divider(),
+            const Divider(),
 
-              /// -- MENU
-              ProfileMenuWidget(
-                  title: "Developers",
-                  icon: Icons.person_2_outlined,
-                  onPress: () {
-                    // Navigator
-                  }),
-              ProfileMenuWidget(
-                  title: "Address", icon: (Icons.location_on), onPress: () {}),
+            /// -- MENU
+            ProfileMenuWidget(
+                title: "Developers",
+                icon: Icons.person_2_outlined,
+                onPress: () {
+                  // Navigator
+                }),
+            ProfileMenuWidget(
+              title: "Address",
+              icon: (Icons.location_on),
+              onPress: () {},
+            ),
 
-              ProfileMenuWidget(
-                  title: "Payment", icon: Icons.credit_card, onPress: () {}),
+            ProfileMenuWidget(
+              title: "Payment",
+              icon: Icons.credit_card,
+              onPress: () {},
+            ),
 
-              ProfileMenuWidget(
-                  title: "About Us",
-                  icon: Icons.info_outline,
-                  onPress: () {
-                    // Navigator
-                  }),
-              ProfileMenuWidget(
-                  title: "Reviews",
-                  icon: Icons.star_border_outlined,
-                  onPress: () {}),
-              ProfileMenuWidget(
-                title: "Logout",
-                icon: Icons.logout_outlined,
-                endIcon: false,
-                onPress: () async {},
-              )
-            ],
-          ),
+            ProfileMenuWidget(
+                title: "About Us",
+                icon: Icons.info_outline,
+                onPress: () {
+                  // Navigator
+                }),
+            ProfileMenuWidget(
+                title: "Reviews",
+                icon: Icons.star_border_outlined,
+                onPress: () {}),
+            ProfileMenuWidget(
+              title: "Logout",
+              icon: Icons.logout_outlined,
+              endIcon: false,
+              onPress: () async {},
+            )
+          ],
         ),
       ),
     );

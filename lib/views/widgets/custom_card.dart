@@ -59,17 +59,10 @@ class _CustomCardState extends State<CustomCard> {
                           ),
                         ),
                         GestureDetector(
-                          onTap: () {
-                            if (heartColor == Colors.red) {
-                              heartColor = kPrimaryColor;
-                            } else {
-                              heartColor = Colors.red;
-                            }
-                            setState(() {});
-                          },
-                          child: Icon(
+                          onTap: () {},
+                          child: const Icon(
                             Icons.favorite,
-                            color: heartColor,
+                            color: Colors.grey,
                           ),
                         ),
                       ],
@@ -95,7 +88,7 @@ class _CustomCardState extends State<CustomCard> {
           bottom: 60,
           child: Image.network(
             widget.image,
-            height: 20.h,
+            height: 18.h,
             width: 24.w,
           ),
         ),
