@@ -4,6 +4,7 @@ import 'package:itistore/views/screens/botttom_nav_screen.dart';
 import 'package:itistore/views/screens/signup_screen.dart';
 import 'package:itistore/views/widgets/custom_button.dart';
 import 'package:itistore/views/widgets/custom_text_field.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 import '../../constants.dart';
 
@@ -88,6 +89,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           email: emailController.text,
                           password: passwordController.text,
                         );
+                        final SharedPreferences prefs =
+                            await SharedPreferences.getInstance();
+                        await prefs.setString('email', emailController.text);
                         if (context.mounted) {
                           Navigator.pushAndRemoveUntil(
                             context,

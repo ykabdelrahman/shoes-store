@@ -96,9 +96,9 @@ class _CategoriesScreenState extends State<CategoriesScreen>
         controller: _tabController,
         children: const [
           AllCategories(),
-          Center(child: Text('Men')),
-          Center(child: Text('Women')),
-          Center(child: Text('Kids')),
+          AllCategories(),
+          AllCategories(),
+          AllCategories(),
         ],
       ),
     );

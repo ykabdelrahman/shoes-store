@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:itistore/views/widgets/custom_text_developer.dart';
 
-class developerscreen extends StatefulWidget {
-  const developerscreen({super.key});
+class DevelopersScreen extends StatefulWidget {
+  const DevelopersScreen({super.key});
 
   @override
-  State<developerscreen> createState() => _developerscreenState();
+  State<DevelopersScreen> createState() => _DevelopersScreenState();
 }
 
-class _developerscreenState extends State<developerscreen> {
+class _DevelopersScreenState extends State<DevelopersScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,38 +37,38 @@ class _developerscreenState extends State<developerscreen> {
                       letterSpacing: 4),
                 ),
               ),
-              CustomTextWidget(text: 'salma salah'),
-              CustomTextWidget(text: 'kafr elshyk university'),
-              CustomTextWidget(
-                text: 'informatin technologey department',
+              const CustomTextWidget(text: 'salma salah'),
+              const CustomTextWidget(text: 'kafr elshyk university'),
+              const CustomTextWidget(
+                text: 'information technology department',
               ),
-              CustomTextWidget(text: 'trainee at iti'),
-              Divider(
+              const CustomTextWidget(text: 'trainee at iti'),
+              const Divider(
                 color: Colors.purple,
               ),
               const SizedBox(
                 height: 5,
               ),
-              CustomTextWidget(text: 'salma salah'),
-              CustomTextWidget(text: 'kafr elshyk university'),
-              Divider(
+              const CustomTextWidget(text: 'salma salah'),
+              const CustomTextWidget(text: 'kafr elshyk university'),
+              const Divider(
                 color: Colors.purple,
               ),
               const SizedBox(
                 height: 5,
               ),
-              CustomTextWidget(text: 'salma salah'),
-              CustomTextWidget(text: 'kafr elshyk university'),
-              Divider(
+              const CustomTextWidget(text: 'salma salah'),
+              const CustomTextWidget(text: 'kafr elshyk university'),
+              const Divider(
                 color: Colors.purple,
               ),
               const SizedBox(
                 height: 5,
               ),
-              CustomTextWidget(text: 'salma salah'),
-              CustomTextWidget(text: 'kafr elshyk university'),
-              CustomTextWidget(
-                text: 'informatin technologey department',
+              const CustomTextWidget(text: 'Abdelrahman ElHussein'),
+              const CustomTextWidget(text: 'Mansoura University'),
+              const CustomTextWidget(
+                text: 'information technology department',
               ),
               const SizedBox(
                 height: 5,

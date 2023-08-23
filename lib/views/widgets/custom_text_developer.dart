@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class CustomTextWidget extends StatelessWidget {
   final String text;
@@ -7,7 +6,8 @@ class CustomTextWidget extends StatelessWidget {
   final FontWeight fontWeight;
   final Color color;
 
-  CustomTextWidget({
+  const CustomTextWidget({
+    super.key,
     required this.text,
     this.fontSize = 26,
     this.fontWeight = FontWeight.w300,

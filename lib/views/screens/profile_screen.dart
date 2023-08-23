@@ -1,7 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:itistore/views/screens/aboutus_screen.dart';
 import 'package:itistore/views/screens/developer.dart';
+import 'package:itistore/views/screens/welcome_screen.dart';
 import 'package:itistore/views/widgets/profile_listtile.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -11,13 +14,29 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  String email = '';
+  getEmail() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    email = prefs.getString('email') ?? "";
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getEmail();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: true,
         automaticallyImplyLeading: false,
         backgroundColor: Colors.white,
+        elevation: 0,
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -35,6 +54,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             const SizedBox(height: 10),
             //email---------//
+            Text(
+              email,
+              style: const TextStyle(
+                color: Colors.black,
+                fontSize: 20,
+              ),
+            ),
             const SizedBox(height: 20),
             SizedBox(
               width: 250,
@@ -65,7 +91,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const developerscreen(),
+                        builder: (context) => const DevelopersScreen(),
                       ));
                 }),
             ProfileMenuWidget(
@@ -87,7 +113,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const aboutusScreen(),
+                        builder: (context) => const AboutUsScreen(),
                       ));
                 }),
             ProfileMenuWidget(
@@ -98,7 +124,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
               title: "Logout",
               icon: Icons.logout_outlined,
               endIcon: false,
-              onPress: () async {},
+              onPress: () async {
+                await _firebaseAuth.signOut();
+                if (context.mounted) {
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const WelcomeScreen(),
+                    ),
+                    (route) => false,
+                  );
+                }
+              },
             )
           ],
         ),

@@ -5,7 +5,6 @@ import 'package:sizer/sizer.dart';
 import '../../constants.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/custom_text_field.dart';
-import 'botttom_nav_screen.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -128,13 +127,15 @@ class _SignupScreenState extends State<SignupScreen> {
                           password: passwordController.text,
                         );
                         if (context.mounted) {
-                          Navigator.pushAndRemoveUntil(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const BottomNavBar(),
-                            ),
-                            (route) => false,
-                          );
+                          if (!Navigator.canPop(context)) {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const LoginScreen(),
+                                ));
+                          } else {
+                            Navigator.pop(context);
+                          }
                         }
                       } on FirebaseAuthException catch (e) {
                         if (e.code == 'weak-password') {
