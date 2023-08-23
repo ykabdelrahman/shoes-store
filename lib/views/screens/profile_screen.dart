@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:itistore/views/screens/aboutus_screen.dart';
+import 'package:itistore/views/screens/developer.dart';
 import 'package:itistore/views/widgets/profile_listtile.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -60,7 +62,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 title: "Developers",
                 icon: Icons.person_2_outlined,
                 onPress: () {
-                  // Navigator
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const developerscreen(),
+                      ));
                 }),
             ProfileMenuWidget(
               title: "Address",
@@ -78,7 +84,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 title: "About Us",
                 icon: Icons.info_outline,
                 onPress: () {
-                  // Navigator
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const aboutusScreen(),
+                      ));
                 }),
             ProfileMenuWidget(
                 title: "Reviews",
