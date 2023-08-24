@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:itistore/constants.dart';
 import 'package:itistore/views/widgets/custom_text_developer.dart';
 import 'package:sizer/sizer.dart';
 
@@ -15,7 +16,7 @@ class _DevelopersScreenState extends State<DevelopersScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.purple,
+        backgroundColor: kPrimaryColor,
         title: const Text(
           'Developers',
           style: TextStyle(fontWeight: FontWeight.bold),
@@ -37,7 +38,7 @@ class _DevelopersScreenState extends State<DevelopersScreen> {
                 textStyle: const TextStyle(
                     fontSize: 36,
                     fontWeight: FontWeight.w500,
-                    color: Colors.purple,
+                    color: kPrimaryColor,
                     letterSpacing: 4),
               ),
             ),

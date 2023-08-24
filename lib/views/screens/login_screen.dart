@@ -24,6 +24,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Form(
         key: _formKey,
         child: SingleChildScrollView(
@@ -32,22 +33,29 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // Image.asset(
-                //   'assets/images/logo.png',
-                //   width: 30.w,
-                //   height: 30.h,
+                SizedBox(height: 14.h),
+                // Row(
+                //   children: [
+                //     Text(
+                //       'Log In',
+                //       style: TextStyle(
+                //         fontSize: 18.sp,
+                //         color: Colors.grey,
+                //       ),
+                //     ),
+                //   ],
                 // ),
-                SizedBox(height: 20.h),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('Log In',
-                        style: TextStyle(
-                          fontSize: 20.sp,
-                          color: Colors.grey,
-                        )),
+                    Image.asset(
+                      'assets/images/shoe.png',
+                      width: 20.w,
+                      height: 20.h,
+                    ),
                   ],
                 ),
-                SizedBox(height: 8.h),
+                SizedBox(height: 3.h),
                 CustomTextFormField(
                   lableText: 'Email',
                   iconn: Icons.email,

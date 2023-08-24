@@ -32,17 +32,18 @@ class _SignupScreenState extends State<SignupScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(height: 20.h),
+                SizedBox(height: 10.h),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('Sign Up',
-                        style: TextStyle(
-                          fontSize: 20.sp,
-                          color: Colors.grey,
-                        )),
+                    Image.asset(
+                      'assets/images/shoe.png',
+                      width: 20.w,
+                      height: 20.h,
+                    ),
                   ],
                 ),
-                SizedBox(height: 8.h),
+                SizedBox(height: 3.h),
                 CustomTextFormField(
                   lableText: 'Email',
                   iconn: Icons.email,
