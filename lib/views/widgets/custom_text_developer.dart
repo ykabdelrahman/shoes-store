@@ -1,28 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:sizer/sizer.dart';
 
 class CustomTextWidget extends StatelessWidget {
   final String text;
-  final double fontSize;
-  final FontWeight fontWeight;
-  final Color color;
 
   const CustomTextWidget({
     super.key,
     required this.text,
-    this.fontSize = 26,
-    this.fontWeight = FontWeight.w300,
-    this.color = Colors.black,
-    // this.letterSpacing = 2,
   });
 
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: TextStyle(
-        fontSize: fontSize,
-        fontWeight: fontWeight,
-        color: color,
+      style: GoogleFonts.lora(
+        textStyle: TextStyle(
+          color: Colors.black,
+          fontSize: 14.sp,
+          fontWeight: FontWeight.w500,
+          fontStyle: FontStyle.italic,
+        ),
       ),
     );
   }

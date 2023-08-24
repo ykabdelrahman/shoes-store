@@ -2,17 +2,18 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:itistore/constants.dart';
 import 'package:itistore/views/widgets/custom_text_field.dart';
+import 'package:itistore/views/widgets/drawer.dart';
 import 'package:sizer/sizer.dart';
 import '../widgets/custom_card.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomeScreenState extends State<HomeScreen> {
   final Stream<QuerySnapshot> productsStream = FirebaseFirestore.instance
       .collection('products')
       .orderBy('id')
@@ -34,11 +35,6 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         centerTitle: true,
-        leading: IconButton(
-          onPressed: () {},
-          icon: Icon(Icons.menu, size: 16.sp),
-          color: Colors.black,
-        ),
         actions: [
           IconButton(
             padding: EdgeInsets.only(right: 8.sp),
@@ -47,6 +43,26 @@ class _HomePageState extends State<HomePage> {
             color: Colors.black,
           ),
         ],
+        leading: Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              icon: const Icon(
+                Icons.menu,
+                color: Colors.black,
+              ),
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+              tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+            );
+          },
+        ),
+      ),
+      drawer: SizedBox(
+        width: 50.w,
+        child: const Drawer(
+          child: CustomDrawer(),
+        ),
       ),
       body: StreamBuilder<QuerySnapshot>(
         stream: productsStream,

@@ -36,7 +36,7 @@ class _CustomCardState extends State<CustomCard> {
             ],
           ),
           child: Card(
-              color: Colors.white,
+              color: const Color(0xFFFAF0E6),
               elevation: 2,
               child: Padding(
                 padding: const EdgeInsets.only(

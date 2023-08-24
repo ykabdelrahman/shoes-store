@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
+import '../widgets/drawer.dart';
 import 'all_categories.dart';
 
 class CategoriesScreen extends StatefulWidget {
@@ -41,10 +42,19 @@ class _CategoriesScreenState extends State<CategoriesScreen>
           ),
         ),
         centerTitle: true,
-        leading: IconButton(
-          onPressed: () {},
-          icon: Icon(Icons.menu, size: 16.sp),
-          color: Colors.black,
+        leading: Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              icon: const Icon(
+                Icons.menu,
+                color: Colors.black,
+              ),
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+              tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+            );
+          },
         ),
         actions: [
           IconButton(
@@ -90,6 +100,12 @@ class _CategoriesScreenState extends State<CategoriesScreen>
           labelPadding: const EdgeInsets.all(6),
           indicatorColor: Colors.purple,
           controller: _tabController,
+        ),
+      ),
+      drawer: SizedBox(
+        width: 50.w,
+        child: const Drawer(
+          child: CustomDrawer(),
         ),
       ),
       body: TabBarView(

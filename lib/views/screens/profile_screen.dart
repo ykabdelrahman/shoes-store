@@ -5,6 +5,9 @@ import 'package:itistore/views/screens/developer.dart';
 import 'package:itistore/views/screens/welcome_screen.dart';
 import 'package:itistore/views/widgets/profile_listtile.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sizer/sizer.dart';
+
+import '../widgets/drawer.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -36,11 +39,40 @@ class _ProfileScreenState extends State<ProfileScreen> {
         centerTitle: true,
         automaticallyImplyLeading: false,
         backgroundColor: Colors.white,
-        elevation: 0,
+        title: Text(
+          'Profile',
+          style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+            fontSize: 12.sp,
+          ),
+        ),
+        leading: Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              icon: const Icon(
+                Icons.menu,
+                color: Colors.black,
+              ),
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+              tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+            );
+          },
+        ),
+      ),
+      drawer: SizedBox(
+        width: 50.w,
+        child: const Drawer(
+          child: CustomDrawer(),
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
+            SizedBox(height: 3.h),
+
             /// -- IMAGE
             SizedBox(
               width: 100,

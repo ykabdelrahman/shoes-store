@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:itistore/constants.dart';
 import 'package:itistore/views/screens/login_screen.dart';
 import 'package:itistore/views/screens/signup_screen.dart';
@@ -25,11 +26,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           children: [
             const Row(),
             Text(
-              'Welcome to noNameStoreForNow',
-              style: TextStyle(
-                fontSize: 16.sp,
-                fontFamily: 'Pacifico',
-                color: Colors.grey,
+              'Welcome to Happy Walking store',
+              style: GoogleFonts.pacifico(
+                textStyle: TextStyle(
+                  color: Colors.grey,
+                  fontSize: 16.sp,
+                ),
               ),
             ),
             Image(

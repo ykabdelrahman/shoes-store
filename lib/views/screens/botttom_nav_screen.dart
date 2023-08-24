@@ -14,7 +14,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
   int currentIndex = 0;
 
   final List<Widget> screens = [
-    const HomePage(),
+    const HomeScreen(),
     const CategoriesScreen(),
     const ProfileScreen(),
   ];
@@ -23,6 +23,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
     return Scaffold(
       body: screens[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.white,
         currentIndex: currentIndex,
         selectedItemColor: Colors.purple,
         items: const <BottomNavigationBarItem>[
