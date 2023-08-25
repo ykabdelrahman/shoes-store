@@ -10,7 +10,7 @@ class CustomCard extends StatefulWidget {
     required this.image,
   });
   final String productName;
-  final double price;
+  final dynamic price;
   final String image;
   @override
   State<CustomCard> createState() => _CustomCardState();
