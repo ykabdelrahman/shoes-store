@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:provider/provider.dart';
 import '../../constants.dart';
+import '../../models/user_data_provider.dart';
 
 class CustomDrawer extends StatefulWidget {
   const CustomDrawer({super.key});
@@ -10,19 +11,21 @@ class CustomDrawer extends StatefulWidget {
 }
 
 class _CustomDrawerState extends State<CustomDrawer> {
-  String email = '';
-  getEmail() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    email = prefs.getString('email') ?? "";
-    setState(() {});
-  }
+  // String email = '';
+  // getEmail() async {
+  //   final SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   email = prefs.getString('email') ?? "";
+  //   setState(() {});
+  // }
 
   @override
   void initState() {
     super.initState();
-    getEmail();
+    // getEmail();
   }
 
+  late Map<String, dynamic>? userData =
+      Provider.of<UserDataProvider>(context).userData;
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -39,7 +42,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
             ),
           ),
           accountEmail: Text(
-            email,
+            '${userData!['email']}',
           ),
           currentAccountPicture: SizedBox(
             width: 100,

@@ -4,9 +4,10 @@ import 'package:itistore/views/screens/aboutus_screen.dart';
 import 'package:itistore/views/screens/developer.dart';
 import 'package:itistore/views/screens/welcome_screen.dart';
 import 'package:itistore/views/widgets/profile_listtile.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../models/user_data_provider.dart';
 import '../widgets/drawer.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -18,18 +19,21 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-  String email = '';
-  getEmail() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    email = prefs.getString('email') ?? "";
-    setState(() {});
-  }
+  // String email = '';
+  // getEmail() async {
+  //   final SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   email = prefs.getString('email') ?? "";
+  //   setState(() {});
+  // }
 
   @override
   void initState() {
     super.initState();
-    getEmail();
+    // getEmail();
   }
+
+  late Map<String, dynamic>? userData =
+      Provider.of<UserDataProvider>(context).userData;
 
   @override
   Widget build(BuildContext context) {
@@ -87,7 +91,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             const SizedBox(height: 10),
             //email---------//
             Text(
-              email,
+              '${userData!['email']}',
               style: const TextStyle(
                 color: Colors.black,
                 fontSize: 20,

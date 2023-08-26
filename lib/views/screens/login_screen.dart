@@ -1,12 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:itistore/views/screens/botttom_nav_screen.dart';
 import 'package:itistore/views/screens/signup_screen.dart';
 import 'package:itistore/views/widgets/custom_button.dart';
 import 'package:itistore/views/widgets/custom_text_field.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import '../../constants.dart';
+import '../../models/user_data_provider.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -18,7 +20,8 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-
+  final _auth = FirebaseAuth.instance;
+  final _firestore = FirebaseFirestore.instance;
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -34,17 +37,6 @@ class _LoginScreenState extends State<LoginScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(height: 14.h),
-                // Row(
-                //   children: [
-                //     Text(
-                //       'Log In',
-                //       style: TextStyle(
-                //         fontSize: 18.sp,
-                //         color: Colors.grey,
-                //       ),
-                //     ),
-                //   ],
-                // ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -93,14 +85,21 @@ class _LoginScreenState extends State<LoginScreen> {
                   onTap: () async {
                     if (_formKey.currentState!.validate()) {
                       try {
-                        await FirebaseAuth.instance.signInWithEmailAndPassword(
+                        await _auth.signInWithEmailAndPassword(
                           email: emailController.text,
                           password: passwordController.text,
                         );
-                        final SharedPreferences prefs =
-                            await SharedPreferences.getInstance();
-                        await prefs.setString('email', emailController.text);
+                        DocumentSnapshot userDataSnapshot = await _firestore
+                            .collection('users')
+                            .doc(_auth.currentUser!.uid)
+                            .get();
+                        Map<String, dynamic> userData =
+                            userDataSnapshot.data() as Map<String, dynamic>;
+
                         if (context.mounted) {
+                          Provider.of<UserDataProvider>(context, listen: false)
+                              .setUserData(userData);
+
                           Navigator.pushAndRemoveUntil(
                             context,
                             MaterialPageRoute(
