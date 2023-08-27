@@ -34,7 +34,12 @@ class _AllCategoriesState extends State<AllCategories> {
           }
 
           return ListView(
-            padding: EdgeInsets.symmetric(horizontal: 5.sp),
+            padding: EdgeInsets.only(
+              right: 1.5.w,
+              left: 1.5.w,
+              top: 1.h,
+              bottom: 2.h,
+            ),
             clipBehavior: Clip.none,
             children: snapshot.data!.docs.map((DocumentSnapshot document) {
               Map<String, dynamic> data =
@@ -42,6 +47,7 @@ class _AllCategoriesState extends State<AllCategories> {
               return CustomCategoryCard(
                 categoryName: data['category'],
                 image: data['image'],
+                onTap: () {},
               );
             }).toList(),
           );

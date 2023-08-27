@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:itistore/views/screens/aboutus_screen.dart';
+import 'package:itistore/views/screens/developer.dart';
 import 'package:provider/provider.dart';
 import '../../constants.dart';
 import '../../models/user_data_provider.dart';
+import '../screens/botttom_nav_screen.dart';
 
 class CustomDrawer extends StatefulWidget {
   const CustomDrawer({super.key});
@@ -60,7 +63,15 @@ class _CustomDrawerState extends State<CustomDrawer> {
             Icons.home,
           ),
           title: const Text('Home'),
-          onTap: () {},
+          onTap: () {
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const BottomNavBar(),
+              ),
+              (route) => false,
+            );
+          },
         ),
         ListTile(
           leading: const Icon(
@@ -74,14 +85,28 @@ class _CustomDrawerState extends State<CustomDrawer> {
             Icons.person,
           ),
           title: const Text('Developers'),
-          onTap: () {},
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const DevelopersScreen(),
+              ),
+            );
+          },
         ),
         ListTile(
           leading: const Icon(
             Icons.info,
           ),
           title: const Text('About us'),
-          onTap: () {},
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const AboutUsScreen(),
+              ),
+            );
+          },
         ),
       ],
     );

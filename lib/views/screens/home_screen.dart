@@ -110,6 +110,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     productName: data['productName'],
                     price: data['price'],
                     image: data['image'],
+                    onTap: () {},
                   );
                 }).toList(),
               ),
