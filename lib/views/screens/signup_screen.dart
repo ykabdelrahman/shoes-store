@@ -18,6 +18,7 @@ class _SignupScreenState extends State<SignupScreen> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final phoneController = TextEditingController();
+  final usernameController = TextEditingController();
   final _auth = FirebaseAuth.instance;
   final _firestore = FirebaseFirestore.instance;
   final _formKey = GlobalKey<FormState>();
@@ -34,7 +35,7 @@ class _SignupScreenState extends State<SignupScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(height: 10.h),
+                SizedBox(height: 4.h),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -46,6 +47,18 @@ class _SignupScreenState extends State<SignupScreen> {
                   ],
                 ),
                 SizedBox(height: 3.h),
+                //-----------username--------------
+                CustomTextFormField(
+                  lableText: 'Username',
+                  iconn: Icons.person,
+                  textStyle: const TextStyle(
+                    color: Colors.black,
+                  ),
+                  textType: TextInputType.name,
+                  controller: usernameController,
+                ),
+                SizedBox(height: 3.h),
+                //-----------email--------------
                 CustomTextFormField(
                   lableText: 'Email',
                   iconn: Icons.email,
@@ -57,6 +70,19 @@ class _SignupScreenState extends State<SignupScreen> {
                   validator: validateEmail,
                 ),
                 SizedBox(height: 3.h),
+                //-----------phone----------
+                CustomTextFormField(
+                  lableText: 'Phone',
+                  iconn: Icons.phone,
+                  textStyle: const TextStyle(
+                    color: Colors.black,
+                  ),
+                  textType: TextInputType.phone,
+                  controller: phoneController,
+                ),
+                //phone
+                SizedBox(height: 3.h),
+                //-----------password------------
                 CustomTextFormField(
                   lableText: 'Password',
                   hideText: true,
@@ -67,17 +93,6 @@ class _SignupScreenState extends State<SignupScreen> {
                   textType: TextInputType.visiblePassword,
                   controller: passwordController,
                   validator: validatePassword,
-                ),
-                //phone
-                SizedBox(height: 3.h),
-                CustomTextFormField(
-                  lableText: 'Phone',
-                  iconn: Icons.phone,
-                  textStyle: const TextStyle(
-                    color: Colors.black,
-                  ),
-                  textType: TextInputType.phone,
-                  controller: phoneController,
                 ),
                 SizedBox(height: 8.h),
                 CustomButton(
@@ -104,6 +119,7 @@ class _SignupScreenState extends State<SignupScreen> {
                             .doc(newUser.user!.uid)
                             .set({
                           'email': emailController.text,
+                          'username': usernameController.text,
                           'phonenumber': phoneController.text,
                         });
                         if (context.mounted) {

@@ -48,6 +48,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ],
                 ),
                 SizedBox(height: 3.h),
+                //-----------email--------------
                 CustomTextFormField(
                   lableText: 'Email',
                   iconn: Icons.email,
@@ -59,6 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   validator: validateEmail,
                 ),
                 SizedBox(height: 3.h),
+                //-----------password--------------
                 CustomTextFormField(
                   lableText: 'Password',
                   hideText: true,

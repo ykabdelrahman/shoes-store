@@ -35,9 +35,9 @@ class _CustomDrawerState extends State<CustomDrawer> {
           decoration: const BoxDecoration(
             color: kPrimaryColor,
           ),
-          accountName: const Text(
-            "User",
-            style: TextStyle(
+          accountName: Text(
+            '${userData!['username']}',
+            style: const TextStyle(
               fontWeight: FontWeight.bold,
             ),
           ),
