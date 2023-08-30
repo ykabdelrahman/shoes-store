@@ -17,11 +17,11 @@ class SignupScreen extends StatefulWidget {
 class _SignupScreenState extends State<SignupScreen> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  final phoneController = TextEditingController();
   final usernameController = TextEditingController();
   final _auth = FirebaseAuth.instance;
   final _firestore = FirebaseFirestore.instance;
   final _formKey = GlobalKey<FormState>();
+  bool _isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,7 @@ class _SignupScreenState extends State<SignupScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(height: 4.h),
+                SizedBox(height: 7.h),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -70,18 +70,6 @@ class _SignupScreenState extends State<SignupScreen> {
                   validator: validateEmail,
                 ),
                 SizedBox(height: 3.h),
-                //-----------phone----------
-                CustomTextFormField(
-                  lableText: 'Phone',
-                  iconn: Icons.phone,
-                  textStyle: const TextStyle(
-                    color: Colors.black,
-                  ),
-                  textType: TextInputType.phone,
-                  controller: phoneController,
-                ),
-                //phone
-                SizedBox(height: 3.h),
                 //-----------password------------
                 CustomTextFormField(
                   lableText: 'Password',
@@ -99,53 +87,20 @@ class _SignupScreenState extends State<SignupScreen> {
                   borderRadius: BorderRadius.circular(6),
                   backgroundColor: kPrimaryColor,
                   splashColor: Colors.purple,
-                  textStyle: TextStyle(
-                    color: Colors.white,
-                    fontSize: 12.sp,
-                  ),
                   height: 8.h,
                   width: 100.w,
-                  text: 'Sign Up',
-                  onTap: () async {
-                    if (_formKey.currentState!.validate()) {
-                      try {
-                        final newUser =
-                            await _auth.createUserWithEmailAndPassword(
-                          email: emailController.text,
-                          password: passwordController.text,
-                        );
-                        await _firestore
-                            .collection('users')
-                            .doc(newUser.user!.uid)
-                            .set({
-                          'email': emailController.text,
-                          'username': usernameController.text,
-                          'phonenumber': phoneController.text,
-                        });
-                        if (context.mounted) {
-                          if (!Navigator.canPop(context)) {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const LoginScreen(),
-                                ));
-                          } else {
-                            Navigator.pop(context);
-                          }
-                        }
-                      } on FirebaseAuthException catch (e) {
-                        if (e.code == 'weak-password') {
-                          showSnackBar(
-                              context, 'The password provided is too weak.');
-                        } else if (e.code == 'email-already-in-use') {
-                          showSnackBar(context,
-                              'The account already exists for that email.');
-                        } else {
-                          showSnackBar(context, e.message.toString());
-                        }
-                      }
-                    }
-                  },
+                  onTap: _signUp,
+                  child: _isLoading
+                      ? const CircularProgressIndicator(
+                          color: Colors.white,
+                        )
+                      : Text(
+                          'Sign Up',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 12.sp,
+                          ),
+                        ),
                 ),
                 SizedBox(height: 2.5.h),
                 Row(
@@ -186,6 +141,47 @@ class _SignupScreenState extends State<SignupScreen> {
         ),
       ),
     );
+  }
+
+  void _signUp() async {
+    if (_formKey.currentState!.validate()) {
+      setState(() {
+        _isLoading = true;
+      });
+      try {
+        final newUser = await _auth.createUserWithEmailAndPassword(
+          email: emailController.text,
+          password: passwordController.text,
+        );
+        await _firestore.collection('users').doc(newUser.user!.uid).set({
+          'email': emailController.text,
+          'username': usernameController.text,
+        });
+        if (context.mounted) {
+          if (!Navigator.canPop(context)) {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const LoginScreen(),
+                ));
+          } else {
+            Navigator.pop(context);
+          }
+        }
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'weak-password') {
+          showSnackBar(context, 'The password provided is too weak.');
+        } else if (e.code == 'email-already-in-use') {
+          showSnackBar(context, 'The account already exists for that email.');
+        } else {
+          showSnackBar(context, e.message.toString());
+        }
+      } finally {
+        setState(() {
+          _isLoading = false; // Hide progress indicator
+        });
+      }
+    }
   }
 
   String? validateEmail(value) {

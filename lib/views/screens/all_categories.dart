@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
+import '../../constants.dart';
 import '../widgets/custom_category_card.dart';
 
 class AllCategories extends StatefulWidget {
@@ -29,7 +30,7 @@ class _AllCategoriesState extends State<AllCategories> {
 
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(
-              child: CircularProgressIndicator(),
+              child: CircularProgressIndicator(color: kPrimaryColor),
             );
           }
 

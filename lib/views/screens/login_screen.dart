@@ -23,6 +23,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final _auth = FirebaseAuth.instance;
   final _firestore = FirebaseFirestore.instance;
   final _formKey = GlobalKey<FormState>();
+  bool _isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -77,52 +78,20 @@ class _LoginScreenState extends State<LoginScreen> {
                   borderRadius: BorderRadius.circular(6),
                   backgroundColor: kPrimaryColor,
                   splashColor: Colors.purple,
-                  textStyle: TextStyle(
-                    color: Colors.white,
-                    fontSize: 12.sp,
-                  ),
                   height: 8.h,
                   width: 100.w,
-                  text: 'Log In',
-                  onTap: () async {
-                    if (_formKey.currentState!.validate()) {
-                      try {
-                        await _auth.signInWithEmailAndPassword(
-                          email: emailController.text,
-                          password: passwordController.text,
-                        );
-                        DocumentSnapshot userDataSnapshot = await _firestore
-                            .collection('users')
-                            .doc(_auth.currentUser!.uid)
-                            .get();
-                        Map<String, dynamic> userData =
-                            userDataSnapshot.data() as Map<String, dynamic>;
-
-                        if (context.mounted) {
-                          Provider.of<UserDataProvider>(context, listen: false)
-                              .setUserData(userData);
-
-                          Navigator.pushAndRemoveUntil(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const BottomNavBar(),
-                            ),
-                            (route) => false,
-                          );
-                        }
-                      } on FirebaseAuthException catch (e) {
-                        if (e.code == 'user-not-found') {
-                          showSnackBar(
-                              context, 'No user found for that email.');
-                        } else if (e.code == 'wrong-password') {
-                          showSnackBar(context,
-                              'Wrong password provided for that user.');
-                        } else {
-                          showSnackBar(context, e.message.toString());
-                        }
-                      }
-                    }
-                  },
+                  onTap: _signUp,
+                  child: _isLoading
+                      ? const CircularProgressIndicator(
+                          color: Colors.white,
+                        )
+                      : Text(
+                          'Log In',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 12.sp,
+                          ),
+                        ),
                 ),
                 SizedBox(height: 2.h),
                 Row(
@@ -163,6 +132,51 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ),
     );
+  }
+
+  void _signUp() async {
+    if (_formKey.currentState!.validate()) {
+      setState(() {
+        _isLoading = true;
+      });
+      try {
+        await _auth.signInWithEmailAndPassword(
+          email: emailController.text,
+          password: passwordController.text,
+        );
+        DocumentSnapshot userDataSnapshot = await _firestore
+            .collection('users')
+            .doc(_auth.currentUser!.uid)
+            .get();
+        Map<String, dynamic> userData =
+            userDataSnapshot.data() as Map<String, dynamic>;
+
+        if (context.mounted) {
+          Provider.of<UserDataProvider>(context, listen: false)
+              .setUserData(userData);
+
+          Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const BottomNavBar(),
+            ),
+            (route) => false,
+          );
+        }
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'user-not-found') {
+          showSnackBar(context, 'No user found for that email.');
+        } else if (e.code == 'wrong-password') {
+          showSnackBar(context, 'Wrong password provided for that user.');
+        } else {
+          showSnackBar(context, e.message.toString());
+        }
+      } finally {
+        setState(() {
+          _isLoading = false; // Hide progress indicator
+        });
+      }
+    }
   }
 
   String? validateEmail(value) {

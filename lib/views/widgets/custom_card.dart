@@ -90,8 +90,8 @@ class _CustomCardState extends State<CustomCard> {
                   )),
             ),
             Positioned(
-              right: 28,
-              bottom: 60,
+              right: 6.w,
+              bottom: 6.5.h,
               child: Image.network(
                 widget.image,
                 height: 18.h,

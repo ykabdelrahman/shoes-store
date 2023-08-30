@@ -41,7 +41,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             ),
             SizedBox(height: 4.h),
             CustomButton(
-              text: 'LOGIN',
               onTap: () {
                 Navigator.pushReplacement(
                     context,
@@ -54,14 +53,16 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               backgroundColor: kPrimaryColor,
               borderRadius: BorderRadius.circular(6),
               splashColor: Colors.purple,
-              textStyle: TextStyle(
-                fontSize: 12.sp,
-                color: Colors.white,
+              child: Text(
+                'LOGIN',
+                style: TextStyle(
+                  fontSize: 12.sp,
+                  color: Colors.white,
+                ),
               ),
             ),
             SizedBox(height: 2.h),
             CustomButton(
-              text: 'SIGNUP',
               onTap: () {
                 Navigator.pushReplacement(
                     context,
@@ -74,9 +75,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               backgroundColor: kPrimaryColor,
               borderRadius: BorderRadius.circular(6),
               splashColor: Colors.purple,
-              textStyle: TextStyle(
-                fontSize: 12.sp,
-                color: Colors.white,
+              child: Text(
+                'SIGNUP',
+                style: TextStyle(
+                  fontSize: 12.sp,
+                  color: Colors.white,
+                ),
               ),
             ),
           ],

@@ -4,24 +4,22 @@ class CustomButton extends StatefulWidget {
   const CustomButton({
     super.key,
     this.backgroundColor,
-    required this.text,
+    this.child,
     required this.onTap,
     this.borderRadius,
     this.height,
     this.width,
-    this.textStyle,
     this.onDoubleTap,
     this.splashColor,
   });
   final Color? backgroundColor;
-  final String text;
   final VoidCallback onTap;
   final VoidCallback? onDoubleTap;
   final BorderRadius? borderRadius;
   final double? height;
   final double? width;
-  final TextStyle? textStyle;
   final Color? splashColor;
+  final Widget? child;
 
   @override
   State<CustomButton> createState() => _CustomButtonState();
@@ -40,10 +38,7 @@ class _CustomButtonState extends State<CustomButton> {
           width: widget.width,
           height: widget.height,
           child: Center(
-            child: Text(
-              widget.text,
-              style: widget.textStyle,
-            ),
+            child: widget.child,
           ),
         ),
       ),

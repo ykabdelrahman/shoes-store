@@ -14,21 +14,8 @@ class CustomDrawer extends StatefulWidget {
 }
 
 class _CustomDrawerState extends State<CustomDrawer> {
-  // String email = '';
-  // getEmail() async {
-  //   final SharedPreferences prefs = await SharedPreferences.getInstance();
-  //   email = prefs.getString('email') ?? "";
-  //   setState(() {});
-  // }
-
-  @override
-  void initState() {
-    super.initState();
-    // getEmail();
-  }
-
   late Map<String, dynamic>? userData =
-      Provider.of<UserDataProvider>(context).userData;
+      Provider.of<UserDataProvider>(context).userData ?? {};
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -39,13 +26,13 @@ class _CustomDrawerState extends State<CustomDrawer> {
             color: kPrimaryColor,
           ),
           accountName: Text(
-            '${userData!['username']}',
+            '${userData!['username'] ?? 'nothin'}',
             style: const TextStyle(
               fontWeight: FontWeight.bold,
             ),
           ),
           accountEmail: Text(
-            '${userData!['email']}',
+            '${userData!['email'] ?? 'nothin'}',
           ),
           currentAccountPicture: SizedBox(
             width: 100,
