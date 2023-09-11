@@ -55,7 +55,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
       ),
       drawer: SizedBox(
-        width: 50.w,
+        width: 75.w,
         child: const Drawer(
           child: CustomDrawer(),
         ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class CustomButton extends StatefulWidget {
+class CustomButton extends StatelessWidget {
   const CustomButton({
     super.key,
     this.backgroundColor,
@@ -22,23 +22,19 @@ class CustomButton extends StatefulWidget {
   final Widget? child;
 
   @override
-  State<CustomButton> createState() => _CustomButtonState();
-}
-
-class _CustomButtonState extends State<CustomButton> {
-  @override
   Widget build(BuildContext context) {
     return Material(
-      color: widget.backgroundColor,
-      borderRadius: widget.borderRadius,
+      color: backgroundColor,
+      borderRadius: borderRadius,
       child: InkWell(
-        splashColor: widget.splashColor,
-        onTap: widget.onTap,
+        splashColor: splashColor,
+        borderRadius: borderRadius,
+        onTap: onTap,
         child: SizedBox(
-          width: widget.width,
-          height: widget.height,
+          width: width,
+          height: height,
           child: Center(
-            child: widget.child,
+            child: child,
           ),
         ),
       ),

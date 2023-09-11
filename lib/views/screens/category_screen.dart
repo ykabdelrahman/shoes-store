@@ -103,7 +103,7 @@ class _CategoriesScreenState extends State<CategoriesScreen>
         ),
       ),
       drawer: SizedBox(
-        width: 50.w,
+        width: 75.w,
         child: const Drawer(
           child: CustomDrawer(),
         ),

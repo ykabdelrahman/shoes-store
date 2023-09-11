@@ -59,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       drawer: SizedBox(
-        width: 50.w,
+        width: 75.w,
         child: const Drawer(
           child: CustomDrawer(),
         ),

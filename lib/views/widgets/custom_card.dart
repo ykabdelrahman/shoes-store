@@ -96,6 +96,7 @@ class _CustomCardState extends State<CustomCard> {
                 widget.image,
                 height: 18.h,
                 width: 24.w,
+                errorBuilder: (context, error, stackTrace) => const Text(''),
               ),
             ),
           ],

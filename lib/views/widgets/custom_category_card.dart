@@ -52,6 +52,8 @@ class _CustomCategoryCardState extends State<CustomCategoryCard> {
                     widget.image,
                     height: 20.h,
                     width: 22.w,
+                    errorBuilder: (context, error, stackTrace) =>
+                        const Text(''),
                   ),
                 ),
               ],
